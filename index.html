@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>CSU BioLab Reservation</title>
+</head>
+<body>
+
+    <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <img src="images/logo2.jpg" alt="CSU Logo" class="nav-logo-img">
+    <p>Biology Lab Equipment Reservation</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="#" class="link active">Home</a></li>
+                <li><a href="#booking" class="link">Booking</a></li>
+                <li><a href="#equipment" class="link">Available Equipment</a></li>
+                <li><a href="#contact" class="link">Contact</a></li>
+                <li><a href="#about" class="link">About Us</a></li>
+            </ul>
+        </div>
+        <div class="nav-button">
+            <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+            <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+
+<!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+        
+        <!------------------- login form -------------------------->
+
+        <div class="login-container" id="login">
+            <div class="top">
+                <header>Sign In</header>
+                <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Username or Email">
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Sign In">
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Forgot password?</a></label>
+                </div>
+            </div>
+        </div>
+
+        <!------------------- registration form -------------------------->
+        <div class="register-container" id="register">
+            <div class="top">
+                <header>Sign Up</header>
+                <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+            </div>
+            <div class="two-forms">
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Firstname">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Lastname">
+                    <i class="bx bx-user"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Email">
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Register">
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="register-check">
+                    <label for="register-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Terms & conditions</a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+<!-- Booking Section -->
+<section id="booking" class="booking-section">
+  <div class="booking-overlay"></div>
+  <div class="form-container">
+    <h2>Book an Equipment</h2>
+    <form id="bookingForm">
+      <!-- Personal Info -->
+      <div class="input-box">
+        <input type="text" class="input-field" placeholder="Full Name" name="fullname" required>
+      </div>
+      <div class="input-box">
+        <input type="email" class="input-field" placeholder="Email" name="email" required>
+      </div>
+      <div class="input-box">
+        <input type="date" class="input-field" name="date" required>
+      </div>
+      <div class="input-box">
+        <input type="time" class="input-field" name="time" required>
+      </div>
+
+      <!-- Equipment Selection -->
+      <h3 style="margin-top: 20px;">Select Equipment</h3>
+
+      <div class="equipment-selection">
+        <!-- Beaker (500ml) -->
+  <div class="equipment-option">
+    <input type="checkbox" id="beaker" name="equipment" value="Beaker (500ml)">
+    <label for="beaker">Beaker (500ml)</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('beakerQty')">-</button>
+      <input type="number" id="beakerQty" name="beakerQty" value="1" min="1" max="10" readonly>
+      <button type="button" onclick="increaseQty('beakerQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Digital Weighing Machine -->
+  <div class="equipment-option">
+    <input type="checkbox" id="weighing" name="equipment" value="Digital Weighing Machine">
+    <label for="weighing">Digital Weighing Machine</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('weighingQty')">-</button>
+      <input type="number" id="weighingQty" name="weighingQty" value="1" min="1" max="5" readonly>
+      <button type="button" onclick="increaseQty('weighingQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Erlenmeyer Flask -->
+  <div class="equipment-option">
+    <input type="checkbox" id="flask" name="equipment" value="Erlenmeyer Flask">
+    <label for="flask">Erlenmeyer Flask</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('flaskQty')">-</button>
+      <input type="number" id="flaskQty" name="flaskQty" value="1" min="1" max="10" readonly>
+      <button type="button" onclick="increaseQty('flaskQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Evaporating Dish -->
+  <div class="equipment-option">
+    <input type="checkbox" id="dish" name="equipment" value="Evaporating Dish">
+    <label for="dish">Evaporating Dish</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('dishQty')">-</button>
+      <input type="number" id="dishQty" name="dishQty" value="1" min="1" max="10" readonly>
+      <button type="button" onclick="increaseQty('dishQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Funnel -->
+  <div class="equipment-option">
+    <input type="checkbox" id="funnel" name="equipment" value="Funnel">
+    <label for="funnel">Funnel</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('funnelQty')">-</button>
+      <input type="number" id="funnelQty" name="funnelQty" value="1" min="1" max="10" readonly>
+      <button type="button" onclick="increaseQty('funnelQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Glass Slide -->
+  <div class="equipment-option">
+    <input type="checkbox" id="slide" name="equipment" value="Glass Slide">
+    <label for="slide">Glass Slide</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('slideQty')">-</button>
+      <input type="number" id="slideQty" name="slideQty" value="1" min="1" max="10" readonly>
+      <button type="button" onclick="increaseQty('slideQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Microscope -->
+  <div class="equipment-option">
+    <input type="checkbox" id="microscope" name="equipment" value="Microscope">
+    <label for="microscope">Microscope</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('microscopeQty')">-</button>
+      <input type="number" id="microscopeQty" name="microscopeQty" value="1" min="1" max="5" readonly>
+      <button type="button" onclick="increaseQty('microscopeQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Spectrometer -->
+  <div class="equipment-option">
+    <input type="checkbox" id="spectrometer" name="equipment" value="Spectrometer">
+    <label for="spectrometer">Spectrometer</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('spectrometerQty')">-</button>
+      <input type="number" id="spectrometerQty" name="spectrometerQty" value="1" min="1" max="3" readonly>
+      <button type="button" onclick="increaseQty('spectrometerQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Test Tube -->
+  <div class="equipment-option">
+    <input type="checkbox" id="testtube" name="equipment" value="Test Tube">
+    <label for="testtube">Test Tube</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('testtubeQty')">-</button>
+      <input type="number" id="testtubeQty" name="testtubeQty" value="1" min="1" max="15" readonly>
+      <button type="button" onclick="increaseQty('testtubeQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Thermometer -->
+  <div class="equipment-option">
+    <input type="checkbox" id="thermometer" name="equipment" value="Thermometer">
+    <label for="thermometer">Thermometer</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('thermometerQty')">-</button>
+      <input type="number" id="thermometerQty" name="thermometerQty" value="1" min="1" max="10" readonly>
+      <button type="button" onclick="increaseQty('thermometerQty')">+</button>
+    </div>
+  </div>
+
+  <!-- Forceps -->
+  <div class="equipment-option">
+    <input type="checkbox" id="forceps" name="equipment" value="Forceps">
+    <label for="forceps">Forceps</label>
+    <div class="qty-controls">
+      <button type="button" onclick="decreaseQty('forcepsQty')">-</button>
+      <input type="number" id="forcepsQty" name="forcepsQty" value="1" min="1" max="10" readonly>
+      <button type="button" onclick="increaseQty('forcepsQty')">+</button>
+    </div>
+  </div>
+  <button type="submit" class="submit" style="margin-top: 20px;">Submit Booking</button>
+    </form>
+  </div>
+</div>
+</section>
+
+
+<!-- Available Equipment Section -->
+<section id="equipment" class="white-section">
+    <h2 class="equipment-heading">Available Equipment</h2>
+    <div class="equipment-grid">
+        <div class="equipment-card">
+            <img src="images/beaker(500ml).jpg" alt="Beaker (500ml)">
+            <p>Beaker (500ml)</p>
+            <span>Quantity: 12</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/digital-weighing-machine.jpg" alt="Digital Weighing Machine">
+            <p>Digital Weighing Machine</p>
+            <span>Quantity: 6</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/erlenmeyer-flask.jpg" alt="Erlenmeyer Flask">
+            <p>Erlenmeyer Flask</p>
+            <span>Quantity: 10</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/evaporating-dish.jpg" alt="Evaporating Dish">
+            <p>Evaporating Dish</p>
+            <span>Quantity: 8</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/funnel.jpg" alt="Funnel">
+            <p>Funnel</p>
+            <span>Quantity: 14</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/glass-slide.jpg" alt="Glass Slide">
+            <p>Glass Slide</p>
+            <span>Quantity: 30</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/microscope.jpg" alt="Microscope">
+            <p>Microscope</p>
+            <span>Quantity: 5</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/spectrometer.jpg" alt="Spectrometer">
+            <p>Spectrometer</p>
+            <span>Quantity: 4</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/test-tube.jpg" alt="Test Tube">
+            <p>Test Tube</p>
+            <span>Quantity: 50</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/thermometer.jpg" alt="Thermometer">
+            <p>Thermometer</p>
+            <span>Quantity: 10</span>
+        </div>
+        <div class="equipment-card">
+            <img src="images/forcep.jpg" alt="Forceps">
+            <p>Forceps</p>
+            <span>Quantity: 15</span>
+        </div>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section id="about" class="info-section">
+    <h2>About Us</h2>
+    <p>
+      Our Biology Laboratory Reservation System helps students and faculty efficiently book and manage lab equipment. We aim to streamline access and improve organization within the CSU Biology Department.
+    </p>
+  </section>
+
+<!-- Contact Section -->
+<section id="contact" class="info-section">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:csubiologylab@carsu.edu.ph">csubiologylab@carsu.edu.ph</a></p>
+    <p>Phone: +63 912 345 6789</p>
+    <p>Address: Caraga State University-Main Campus, Ampayon, Butuan City 8600</p>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 CSU Biology Lab Reservation System. All rights reserved.</p>
+    <p>Developed by: <strong>Team AURORA</strong></p>
+  </footer>
+
+<script>
+   
+   function myMenuFunction() {
+    var i = document.getElementById("navMenu");
+
+    if(i.className === "nav-menu") {
+        i.className += " responsive";
+    } else {
+        i.className = "nav-menu";
+    }
+   }
+ 
+</script>
+
+<script>
+
+    var a = document.getElementById("loginBtn");
+    var b = document.getElementById("registerBtn");
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+
+    function login() {
+        x.style.left = "4px";
+        y.style.right = "-520px";
+        a.className += " white-btn";
+        b.className = "btn";
+        x.style.opacity = 1;
+        y.style.opacity = 0;
+    }
+
+    function register() {
+        x.style.left = "-510px";
+        y.style.right = "5px";
+        a.className = "btn";
+        b.className += " white-btn";
+        x.style.opacity = 0;
+        y.style.opacity = 1;
+    }
+</script>
+
+<script>
+  function increaseQty(id) {
+    const input = document.getElementById(id);
+    let current = parseInt(input.value);
+    const max = parseInt(input.max);
+    if (current < max) input.value = current + 1;
+  }
+
+  function decreaseQty(id) {
+    const input = document.getElementById(id);
+    let current = parseInt(input.value);
+    const min = parseInt(input.min);
+    if (current > min) input.value = current - 1;
+  }
+</script>
+
+</body>
+</html>
+
+
